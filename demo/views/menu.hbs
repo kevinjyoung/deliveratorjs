@@ -1,0 +1,18 @@
+<!Doctype html>
+<html>
+  <head>
+    <!-- for IE6-8 support of HTML5 elements-->
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    {{{head}}}
+    <script>
+      ordrin = typeof ordrin==="undefined"?{}:ordrin;
+      ordrin.menu = {{{data}}};
+      ordrin.render = false;
+    </script>
+  </head>
+  <body>
+    <div id="ordrinMenu">
+      {{{menu}}}
+    </div>
+  </body>
+</html>
