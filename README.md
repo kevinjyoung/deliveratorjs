@@ -13,9 +13,11 @@ You can start using Deliveratorjs on your node server in *n* easy steps:
             ```javascript
             ordrin = typeof ordrin==="undefined"?{}:ordrin;
             ordrin.menu = {{{data}}};
-            ordrin.render = false;```
+            ordrin.render = false;
+            ```
   3. The following `<div>` somewhere inside of the `<body>`:
             ```html
             <div id="ordrinMenu">
               {{{menu}}}
-            </div>```
+            </div>
+            ```
