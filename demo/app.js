@@ -30,10 +30,7 @@ app.configure(function(){
   app.set('view engine', 'hbs');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(function(req, res, next){
-    req.deliverator = deliverator.html;
-    next();
-  });
+  app.use(deliverator.html.addHtml);
   app.use(deliverator.injector);
   app.use(app.router);
 });
