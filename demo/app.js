@@ -5,7 +5,7 @@
 
 var express = require('express'),
     routes  = require('./routes'),
-    config  = require('nconf').argv().env().file({file:'./demo/config.json'});
+    config  = require('nconf').argv().env().file({file:__dirname + '/config.json'});
 
 var app = module.exports = express.createServer();
 
