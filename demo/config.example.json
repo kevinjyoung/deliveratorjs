@@ -1,8 +1,5 @@
 {
   "ordrinApi":{
-    "api-key": "",
-    "restaurant": "r-test.ordr.in",
-    "user": "u-test.ordr.in",
-    "order": "o-test.ordr.in"
+    "api-key": ""
   }
 }

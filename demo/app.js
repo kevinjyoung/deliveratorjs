@@ -10,15 +10,13 @@ var express = require('express'),
 var app = module.exports = express.createServer();
 
 var options = {
-  apiKey: config.get("ordrinApi:api-key"),
-  restaurantUrl: config.get("ordrinApi:restaurant"),
-  userUrl: config.get("ordrinApi:user"),
-  orderUrl: config.get("ordrinApi:order")
-}
+  apiKey : config.get("ordrinApi:api-key"),
+  servers : "test"
+};
 
 console.log(options);
 
-var deliverator = require('../main.js')('/ordrin', options);
+var deliverator = require('../main.js')(options);
 
 // Configuration
 

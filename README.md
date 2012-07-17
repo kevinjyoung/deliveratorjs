@@ -7,7 +7,8 @@ Deliverator is a node.js module for easily inserting [Mustard](https://github.co
 You can start using Deliverator on your node server in 6 easy steps:
 
 1. Run `npm install deliverator`
-2. Create a webpage that has at least the following elements:
+2. Create an express project.
+3. Create a webpage that has at least the following elements:
    1. `{{{head}}}` inside of the `<head>`   
    2. The following `<div>` somewhere inside of the `<body>`:
   
@@ -16,16 +17,24 @@ You can start using Deliverator on your node server in 6 easy steps:
         {{{menu}}}
       </div>
       ```
-3. In the main file for the server, do the following:
-   1. Create a hash like the one in `demo/config.example.json`. We will assume this is in a variable called `options`
-   2. Choose a base path from which Mustard files should be served. The only requirement is that it starts with a `/` and that no other routes are served from that url. We will assume that this is in the variable `path`.
-   3. Instantiate deliverator with
+4. In the main file for the server, do the following:
+   1. Create a hash with your API key, like:
    
       ```javascript
-      var deliverator = require('deliverator')(path, options);
+      var options = {apiKey : "your API key here",
+                     servers: "test"};
       ```
-4. Add to the server the middlewares `deliverator.html.addHtml` and `deliverator.injector`
-5. Set the view engine to Handlebars or Mustache
+   2. Instantiate deliverator with
+   
+      ```javascript
+      var deliverator = require('deliverator')(options);
+      ```
+5. Add deliverator to your middleware before `router`:
+
+   ```javascript
+   app.use(deliverator.html.addHtml);
+   app.use(deliverator.injector);
+   ```
 6. To render the template with deliverator's HTML, call
    ```javascript
    req.deliverator.render(res, rid, template, extra)
