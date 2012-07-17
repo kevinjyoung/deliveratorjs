@@ -1,6 +1,10 @@
-<script src="{{path}}/script/menu.min.js"></script>
 <link href="{{path}}/style/main.min.css" rel="stylesheet" type="text/css">
 <script>
+  (function(){
+    var ow = document.createElement('script'); ow.type = 'text/javascript'; ow.async = true;
+    ow.src = '{{path}}/script/menu.min.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ow, s);  
+  })();
   ordrin = typeof ordrin==="undefined"?{}:ordrin;
   ordrin.menu = {{{data}}};
   ordrin.render = false;
