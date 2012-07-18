@@ -12,7 +12,10 @@ exports.index = function(req, res){
  */
 
 exports.menu = function(req, res){
-  req.deliverator.render(res, req.params.rid, "menu", {});
+  //req.deliverator.render(res, req.params.rid, "menu", {});
+
+  req.deliverator.renderSimple(res, req.params.rid, "menu", {});
+  
   // var deliverator = req.deliverator;
   // deliverator.getData(req.params.rid, function(err, data){
   //   if(err){
