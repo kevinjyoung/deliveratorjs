@@ -2,7 +2,12 @@
 <script>
   ordrin = typeof ordrin==="undefined"?{}:ordrin;
   ordrin.rid = {{rid}};
-  ordrin.render = {{render}};
+  {{#render}}
+    ordrin.render = true;
+  {{/render}}
+  {{^render}}
+  ordrin.render = false;
+  {{/render}}
   {{#data}}
     ordrin.menu = {{{this}}};
   {{/data}}
