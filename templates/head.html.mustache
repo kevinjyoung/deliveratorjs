@@ -1,14 +1,14 @@
 <link href="{{path}}/style/main.min.css" rel="stylesheet" type="text/css">
 <script>
   ordrin = typeof ordrin==="undefined"?{}:ordrin;
-  {{#data}}
-    ordrin.menu = {{{data}}};
-    ordrin.render = false;
-  {{/data}}
-  {{^data}}
   ordrin.rid = {{rid}};
-  ordrin.render = true;
+  ordrin.render = {{render}};
+  {{#data}}
+    ordrin.menu = {{{this}}};
   {{/data}}
+  {{#address}}
+    ordrin.address = {{{this}}};
+  {{/address}}
   ordrin.restaurantUrl = location.origin+"{{path}}/api";
   (function(){
     var ow = document.createElement('script'); ow.type = 'text/javascript'; ow.async = true;
