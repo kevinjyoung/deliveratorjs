@@ -14,7 +14,7 @@
   {{#address}}
     ordrin.address = {{{this}}};
   {{/address}}
-  ordrin.restaurantUrl = location.origin+"{{path}}/api";
+  ordrin.restaurantUrl = ordrin.orderUrl = location.origin+"{{path}}/api";
   (function(){
     var ow = document.createElement('script'); ow.type = 'text/javascript'; ow.async = true;
     ow.src = '{{path}}/script/menu.js';

@@ -4,8 +4,24 @@ html
     // for IE6-8 support of HTML elements
     // if lt IE 9
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    script
+      function sendOrder(){
+        var address = ordrin.mustard.getAddress();
+        var creditCard = new ordrin.api.CreditCard("Test User", "6", "2020", address, "4111111111111111", "123");
+        ordrin.api.order.placeOrder(ordrin.mustard.getRid(), ordrin.mustard.getTray(), ordrin.mustard.getTip(), "ASAP", "Test", "User", address, creditCard, "test@ordr.in", function(err, data){
+          if(err){
+            console.log(err);
+            document.getElementById("output").innerHTML = JSON.stringify(err);
+          } else {
+            console.log(data);
+            document.getElementById("output").innerHTML = JSON.stringify(data);
+          }
+        });
+      }
     !{head}
   body
     #ordrinMenu
       if typeof menu !== "undefined"
         !{menu}
+      input(type="button", onClick="sendOrder()", value="Send order")
+    #output
