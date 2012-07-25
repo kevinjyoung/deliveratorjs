@@ -4,8 +4,9 @@ Deliveratorjs is a node.js module for easily inserting [Mustard](https://github.
 
 ## Quick Start
 
-You can create a basic express server using deliverator with these four simple steps:
+You can create a basic express server using deliverator with these six simple steps:
 
+0. Install [node.js](http://nodejs.org/#download), express (`npm install -g express`), and [git](http://git-scm.com/downloads).
 1. Create an express server in the folder you want to use with
 
     ```bash
@@ -36,7 +37,7 @@ You can create a basic express server using deliverator with these four simple s
 6. Change the body of the `index` function in `routes/index.js` to
 
     ```js
-    req.deliverator.renderSimple(res, '141', "index", {title: 'Menu'});
+    req.deliverator.renderSimple(res, '141', "index", {title:'Menu'});
     ```
     
 The menu should appear on the index page that the express server is serving.
