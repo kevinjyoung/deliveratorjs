@@ -4,7 +4,10 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' })
+  var address = new req.deliverator.api.Address("1 Main Street", "College Station", "TX", "77840", "5555555555");
+  var dateTime = "ASAP";
+  //req.deliverator.renderRestaurantsSimple(res, "index", {}, address, "menu", dateTime);
+  req.deliverator.renderRestaurants(res, "index", {}, address, "menu", dateTime, false);
 };
 
 /*
@@ -12,10 +15,10 @@ exports.index = function(req, res){
  */
 
 exports.menu = function(req, res){
-  var address = new req.deliverator.api.Address("1 Main Street", "College Station", "TX", "77840", "5555555555")
-  req.deliverator.render(res, req.params.rid, "menu", {}, true, address);
+  var address = new req.deliverator.api.Address("1 Main Street", "College Station", "TX", "77840", "5555555555");
+  //req.deliverator.render(res, req.params.rid, "menu", {}, true, address);
 
-  //req.deliverator.renderSimple(res, req.params.rid, "menu", {}, address);
+  req.deliverator.renderSimple(res, req.params.rid, "menu", {}, address);
   
   // var deliverator = req.deliverator;
   // deliverator.getData(req.params.rid, function(err, data){

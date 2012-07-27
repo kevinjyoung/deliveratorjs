@@ -1,6 +1,6 @@
 {
   "name": "deliveratorjs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A mustard powered node module for easily creating pages with ordr.in menus",
   "author" : "Ordr.in <tech@ordr.in>",
   "repository" : {
@@ -13,7 +13,7 @@
     "ordr.in"
   ],
   "dependencies": {
-    "mustard": "git+ssh://git@github.com:ordrin/ordrin-client.git",
+    "mustard": "git+ssh://git@github.com:ordrin/ordrin-client.git#v0.3.x",
     "ordrin-api": "0.1.x",
     "async": "0.1.2",
     "handlebars": "1.0.5beta",
