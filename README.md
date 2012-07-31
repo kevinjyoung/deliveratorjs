@@ -16,7 +16,7 @@ You can create a basic express server using deliverator with these six simple st
     ```
      
 2. Run `npm install deliveratorjs`
-3. In `views/index.jade`, add `#ordrinMenu` to the content block, and in `views/layout.jade`, add `!{head}` to the `head` tag.
+3. Copy the contents of `node-modules/deliveratorjs/example` into `views`
 4. In `app.js`, below the module dependencies, add the lines:
    
    ```js
@@ -34,10 +34,11 @@ You can create a basic express server using deliverator with these six simple st
     app.use(deliverator.injector);
     ```
     
-6. Change the body of the `index` function in `routes/index.js` to
+6. In `app.js`, add the following lines after `app.get('/', routes.index);`:
 
     ```js
-    req.deliverator.renderSimple(res, '141', "index", {title:'Menu'});
+    app.get('/search',             deliverator.html.getDefaultRestaurantListMiddleware("search", "/menu"));
+    app.get('/menu/:rid',                 deliverator.html.getDefaultMenuMiddleware("menu"));
     ```
     
 The menu should appear on the index page that the express server is serving.

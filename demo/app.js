@@ -48,8 +48,8 @@ var express = require('express'),
   app.get('/', routes.index);
   app.get("/menu/:rid", routes.menu);
 
-  // app.get('/list', deliverator.html.getDefaultRestaurantListMiddleware("index", "/menu"));
-  // app.get('/menu/:rid', deliverator.html.getDefaultMenuMiddleware("menu"));
+  app.get('/list', deliverator.html.getDefaultRestaurantListMiddleware("index", "/menu", true));
+  app.get('/menu/:rid', deliverator.html.getDefaultMenuMiddleware("menu", true));
   
   app.listen(3000, function(){
     console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
