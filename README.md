@@ -37,8 +37,8 @@ You can create a basic express server using deliverator with these six simple st
 6. In `app.js`, add the following lines after `app.get('/', routes.index);`:
 
     ```js
-    app.get('/search',             deliverator.html.getDefaultRestaurantListMiddleware("search", "/menu"));
-    app.get('/menu/:rid',                 deliverator.html.getDefaultMenuMiddleware("menu"));
+    app.get('/search', deliverator.html.getDefaultRestaurantListMiddleware("search", "/menu"));
+    app.get('/menu/:rid', deliverator.html.getDefaultMenuMiddleware("menu"));
     ```
     
 The menu should appear on the index page that the express server is serving.
