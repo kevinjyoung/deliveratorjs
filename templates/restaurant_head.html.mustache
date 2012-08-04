@@ -6,6 +6,9 @@
   ordrin.render = "{{render}}";
   ordrin.menu_uri = "{{menu_uri}}";
   ordrin.restaurantUrl = ordrin.orderUrl = location.origin+"{{path}}/api";
+  {{#data}}
+    ordrin.restaurants = {{{this}}};
+  {{/data}}
   (function(){
     var ow = document.createElement('script'); ow.type = 'text/javascript'; ow.async = true;
     ow.src = '{{path}}/script/mustard.js';

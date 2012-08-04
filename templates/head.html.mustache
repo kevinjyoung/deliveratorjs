@@ -9,6 +9,9 @@
   {{#address}}
     ordrin.address = {{{this}}};
   {{/address}}
+  {{#deliveryTime}}
+    ordrin.deliveryTime = {{{this}}};
+  {{/deliveryTime}}
   ordrin.restaurantUrl = ordrin.orderUrl = location.origin+"{{path}}/api";
   (function(){
     var ow = document.createElement('script'); ow.type = 'text/javascript'; ow.async = true;

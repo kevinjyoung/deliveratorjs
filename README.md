@@ -1,6 +1,13 @@
-# Readme
+# Deliveratorjs - a server for Mustard powered food ordering websites
 
 Deliveratorjs is a node.js module for easily inserting [Mustard](https://github.com/ordrin/ordrin-client) powered menus into web pages.
+
+## Installation
+Install from npm with
+
+```sh
+npm install deliveratorjs
+```
 
 ## Quick Start
 
@@ -42,3 +49,25 @@ You can create a basic express server using deliverator with these six simple st
     ```
     
 The menu should appear on the index page that the express server is serving.
+
+## Usage
+### Initialization
+
+Deliverator takes the same initialization arguments as the [node Ordr.in wrapper](https://github.com/ordrin/api-node#initialization), with the additional argument `path`, which is a url path that deliverator will use that will not conflict with anything else and defaults to `"/ordrin"`. For example,
+
+```js
+var options = {
+  apiKey = "YOUR-ORDRIN-API-KEY",
+  restaurantUrl: "r.ordr.in",
+  userUrl: "u.ordr.in",
+  orderUrl: "o.ordr.in",
+  path: "/deliverator"
+}
+var deliverator = require("deliveratorjs")(options);
+```
+
+### Middlewares
+
+#### Injector
+
+The injector middleware serves auxillary Deliverator requests made to URIs starting with `path` as set when initializing. It will act as a proxy to the [Ordr.in API](http://ordr.in/developers/api) by forwarding any request that starts with `/path/api`. For any other path starting with `/path`, it will try to serve the corresponding file in `node_modules/mustard`.
