@@ -1,17 +1,25 @@
 <link href="{{path}}/style/main.min.css" rel="stylesheet" type="text/css">
 <script>
   ordrin = typeof ordrin==="undefined"?{}:ordrin;
-  ordrin.rid = {{rid}};
-  ordrin.render = "{{render}}";
+  ordrin.init = ordrin.init===undefined?{}:ordrin.init;
+  ordrin.init.rid = {{rid}};
+  {{#render}}
+    ordrin.init.render = true;
+  {{/render}}
+  {{^render}}
+  ordrin.init.render = false;
+  {{/render}}
+  ordrin.init.page = "menu";
   {{#data}}
-    ordrin.menu = {{{this}}};
+    ordrin.init.menu = {{{this}}};
   {{/data}}
   {{#address}}
-    ordrin.address = {{{this}}};
+    ordrin.init.address = {{{this}}};
   {{/address}}
   {{#deliveryTime}}
-    ordrin.deliveryTime = {{{this}}};
+    ordrin.init.deliveryTime = {{{this}}};
   {{/deliveryTime}}
+  ordrin.init.confirmUrl = "{{confirmUrl}}";
   ordrin.restaurantUrl = ordrin.orderUrl = location.origin+"{{path}}/api";
   (function(){
     var ow = document.createElement('script'); ow.type = 'text/javascript'; ow.async = true;
