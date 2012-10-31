@@ -12,7 +12,7 @@
   {{/render}}
   ordrin.init.page = "restaurants";
   ordrin.init.menu_uri = "{{menu_uri}}";
-  ordrin.init.restaurantUrl = ordrin.orderUrl = location.origin+"{{path}}/api";
+  ordrin.init.restaurantUrl = ordrin.orderUrl =  window.location.protocol + "//" + window.location.host+"{{path}}/api";
   {{#data}}
     ordrin.init.restaurants = {{{this}}};
   {{/data}}

@@ -17,7 +17,7 @@
   ordrin.init.deliveryTime = {{{deliveryTime}}};
   ordrin.init.trayString = "{{tray}}";
   ordrin.init.tip = {{tip}};
-  ordrin.restaurantUrl = ordrin.orderUrl = location.origin+"{{path}}/api";
+  ordrin.restaurantUrl = ordrin.orderUrl =  window.location.protocol + "//" + window.location.host +"{{path}}/api";
   (function(){
     var ow = document.createElement('script'); ow.type = 'text/javascript'; ow.async = true;
     ow.src = '{{path}}/script/mustard.js';
