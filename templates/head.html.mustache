@@ -10,6 +10,9 @@
   ordrin.init.render = false;
   {{/render}}
   ordrin.init.page = "menu";
+  {{#head_init}}
+    {{name}} = {{{val}}};
+  {{/head_init}}
   {{#details}}
     ordrin.init.details = {{{this}}};
   {{/details}}
