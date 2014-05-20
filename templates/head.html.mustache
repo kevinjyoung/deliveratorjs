@@ -1,4 +1,6 @@
-<link href="{{path}}/style/main.min.css" rel="stylesheet" type="text/css">
+{{^isMobile}}
+  <link href="{{path}}/style/main.min.css" rel="stylesheet" type="text/css">
+{{/isMobile}}
 <script>
   ordrin = typeof ordrin==="undefined"?{}:ordrin;
   ordrin.init = ordrin.init===undefined?{}:ordrin.init;
@@ -10,6 +12,9 @@
   ordrin.init.render = false;
   {{/render}}
   ordrin.init.page = "menu";
+  {{#head_init}}
+    {{name}} = {{{val}}};
+  {{/head_init}}
   {{#details}}
     ordrin.init.details = {{{this}}};
   {{/details}}

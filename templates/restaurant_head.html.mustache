@@ -1,4 +1,6 @@
-<link href="{{path}}/style/main.min.css" rel="stylesheet" type="text/css">
+{{^isMobile}}
+  <link href="{{path}}/style/main.min.css" rel="stylesheet" type="text/css">
+{{/isMobile}}
 <script>
   ordrin = typeof ordrin==="undefined"?{}:ordrin;
   ordrin.init = ordrin.init===undefined?{}:ordrin.init;
@@ -12,7 +14,7 @@
   {{/render}}
   ordrin.init.page = "restaurants";
   ordrin.init.menu_uri = "{{menu_uri}}";
-  ordrin.restaurantUrl = ordrin.orderUrl =  window.location.protocol + "//" + window.location.host+"{{path}}/api";
+  ordrin.init.restaurantUrl = ordrin.orderUrl =  window.location.protocol + "//" + window.location.host+"{{path}}/api";
   {{#data}}
     ordrin.init.restaurants = {{{this}}};
   {{/data}}
