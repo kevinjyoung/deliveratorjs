@@ -13,7 +13,7 @@
     "ordr.in"
   ],
   "dependencies": {
-    "mustard": "git://github.com/ordrin/mustardjs.git#dev_polina",
+    "mustard": "git://github.com/ordrin/mustardjs.git",
     "ordrin-api": "0.1.108",
     "async": "0.1.2",
     "handlebars": "1.0.5beta",
