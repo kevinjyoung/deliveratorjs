@@ -194,7 +194,7 @@ A less granular method of creating Deliverator pages is a set of functions that 
 ##### Restaurant List Pages
 
 ```js
-renderRestaurantsSimple(res, template, extra, address, menuUri, dateTime)
+renderRestaurantsSimple(res, params, dateTime)
 renderRestaurants( res, params, callback )
 ```
 
