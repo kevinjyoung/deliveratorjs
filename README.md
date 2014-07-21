@@ -59,9 +59,9 @@ Deliverator takes the same initialization arguments as the [node Ordr.in wrapper
 ```js
 var options = {
   apiKey = "YOUR-ORDRIN-API-KEY",
-  restaurantUrl: "r.ordr.in",
-  userUrl: "u.ordr.in",
-  orderUrl: "o.ordr.in",
+  restaurantUrl: "r-test.ordr.in",
+  userUrl: "u-test.ordr.in",
+  orderUrl: "o-test.ordr.in",
   path: "/deliverator"
 };
 var deliverator = require("deliveratorjs")(options);
@@ -82,40 +82,80 @@ Several functions render stuff that goes in the `<head>` tag. All of these inclu
 ###### Restaurant Head
 
 ```js
-getSimpleRestaurantsHead(address, menuUri, dateTime)
-getRestaurantsHead(address, menuUri, dateTime, render, data)
+getSimpleRestaurantsHead( data )
+getRestaurantsHead( data )
 ```
 
 The first function puts into `ordrin` the data needed to request and render the list of restaurants. This should be used if you want Mustard to request the restaurant array and render it to the page client side.
 
 The second sets that data and also inserts the array of restaurant data. This should be used if you want to do the data request and possibly render the page on the server before returning the response.
 
-**Arguments**:
+Both functions take in a single object as its argument. The first function has fewer properties, and the ones that are not necessary for it will be noted. Below are the expected properties:
 
- - `address`: The address for food to be delivered to. SHould be an instance of [`ordrinAPI.address`](https://github.com/ordrin/api-node#data-structures) or equivalent.
- - `menuUri`: The base url for menu requests. Mustard assumes that requests to `menuUri/rid` will get responses with restaurant menus.
- - `dateTime`: The date and time of when the food should be delivered. Should be `"ASAP"` or a string of the form `MM-dd+HH:mm`.
- - `render`: A boolean that determines whether Mustard will render the restaurant list HTML client side. Should be true if the server will not render that HTML in the response.
- - `data`: An object containing a `restaurant` key mapping to an array of restaurant objects, as the [Delivery List API Call](http://ordr.in/docs/restaurant) returns.
+ - `address`: The address for food to be delivered to. Should be an instance of [`ordrinAPI.address`](https://github.com/ordrin/api-node#data-structures) or equivalent.
+ - `menu_uri`: The base url for menu requests. Mustard assumes that requests to `menuUri/rid` will get responses with restaurant menus.
+ - `deliveryTime`: The date and time of when the food should be delivered. Should be `"ASAP"` or a string of the form `MM-dd+HH:mm`.
+ - `render`: A boolean that determines whether Mustard will render the restaurant list HTML client side. Should be true if the server will not render that HTML in the response. `getRestaurantsHead` ONLY.
+ - `data`: An object containing a `restaurant` key mapping to an array of restaurant objects, as the [Delivery List API Call](http://ordr.in/docs/restaurant) returns. `getRestaurantsHead` ONLY.
+ - `head_init`: Dictionary of variable names & variable values that may be added to the JavaScript snippet that initializes the necessary Mustard variables. `getRestaurantsHead` ONLY.
+ - `isMobile`: A boolean for whether or not the rendered pages will be for mobile view or not. If they are, the mustard style file will not be applied to the pages. `getRestaurantsHead` ONLY.
 
 ###### Menu Head
 
 ```js
-getSimpleHead(rid, address, dateTime)
-getHead(rid, data, address, render, dateTime)
+getSimpleHead( data )
+getHead( data )
 ```
 
 The first function puts into `ordrin` the data needed to request and render the menu. This should be used if you want Mustard to request the menu data and render the menu to the page client side.
 
 The second sets that data and also inserts the menu data. This should be used if you want to do the data request and possibly render the page on the server before returning the response.
 
-**Arguments:**
+Both functions take in a single object as its argument. The first function has fewer properties, and the ones that are not necessary for it will be noted. Below are the expected properties:
 
  - `rid`: The restaurant ID
  - `address`: The address for food to be delivered to. Should be an instance of [`ordrinAPI.address`](https://github.com/ordrin/api-node#data-structures) or equivalent.
- - `dateTime`: The date and time of when the food should be delivered. Should be `"ASAP"` or a string of the form `MM-dd+HH:mm`.
- - `data`: An object containing a `menu` key mapping to a menu array, as the [Restaurant Details API Call](http://ordr.in/docs/restaurant) returns.
- - `render`: A boolean that determines whether Mustard will render the menu HTML client side. Should be true if the server will not render that HTML in the response.
+ - `deliveryTime`: The date and time of when the food should be delivered. Should be `"ASAP"` or a string of the form `MM-dd+HH:mm`.
+ - `data`: An object containing a `menu` key mapping to a menu array, as the [Restaurant Details API Call](https://hackfood.ordr.in/docs/restaurant) returns. `getHead` ONLY.
+ - `render`: A boolean that determines whether Mustard will render the menu HTML client side. Should be true if the server will not render that HTML in the response. `getHead` ONLY.
+ - `details`: An object containing the details about a restaurant, as returned by the [Restaurant Details API Call](https://hackfood.ordr.in/docs/restaurant). `getHead` ONLY.
+ - `head_init`: Dictionary of variable names & variable values that may be added to the JavaScript snippet that initializes the necessary Mustard variables. `getHead` ONLY.
+ - `isMobile`: A boolean for whether or not the rendered pages will be for mobile view or not. If they are, the mustard style file will not be applied to the pages.
+ - `confirmUrl`: A string that contains the (relative) path to the confirm page of the app. 
+
+###### Confirm Head
+
+```js
+getSimpleConfirmHead( data )
+getConfirmHead( data )
+```
+
+The first function puts into `ordrin` the data needed to request and render a confirm page. This should be used if you want Mustard to parse the tray string and render its contents to the page client side.
+
+The second parses that data and also renders it. This should be used if you want to do the data request and possibly render the page on the server before returning the response.
+
+Both functions take in a single object as its argument. The first function has fewer properties, and the ones that are not necessary for it will be noted. Below are the expected properties:
+
+ - `address`: The address for food to be delivered to. Should be an instance of [`ordrinAPI.address`](https://github.com/ordrin/api-node#data-structures) or equivalent.
+ - `rid`: The restaurant ID
+ - `deliveryTime`: The date and time of when the food should be delivered. Should be `"ASAP"` or a string of the form `MM-dd+HH:mm`.
+ - `render`: A boolean that determines whether Mustard will render the restaurant list HTML client side. Should be true if the server will not render that HTML in the response. `getConfirmHead` ONLY.
+ - `data`: An object containing a `restaurant` key mapping to an array of restaurant objects, as the [Delivery List API Call](http://ordr.in/docs/restaurant) returns. `getConfirmHead` ONLY.
+ - `tray`: A string denoting the tray of the order, in the format documented in the [Order API Call](https://hackfood.ordr.in/docs/order).
+ - `tip`: A string denoting the tip for the order. In cents.
+
+###### Address Head
+
+```js
+getAddressHead( data )
+```
+
+Compared to all other heads, the address head has only a single function, since the address page doesn't rely on Mustard code.
+
+The function takes in a single object as its argument.
+
+ - `isMobile`: A boolean for whether or not the rendered pages will be for mobile view or not. If they are, the mustard style file will not be applied to the pages.
+ - `extraCss`: A string of CSS code inside `<style>` tags, which can optionally be injected into the head of the page.
 
 ##### Rendered HTML
 
@@ -155,7 +195,7 @@ A less granular method of creating Deliverator pages is a set of functions that 
 
 ```js
 renderRestaurantsSimple(res, template, extra, address, menuUri, dateTime)
-renderRestaurants(res, template, extra, address, menuUri, dateTime, renderList)
+renderRestaurants( res, params, callback )
 ```
 
 The first renders the page to pass as little data as possible into the response, so the client will have to request the restaurant data list and render the HTML.
@@ -165,18 +205,20 @@ The second renders the page with the data and possibly the rendered HTML, so the
 **Arguments:**
 
  - `res`: The response variable that would be passed to an express middleware.
- - `template`: The name of a template to render into. This template should render the key `head` into the `<head>` tag and the key `restaurants` into a tag with the id `ordrinRestaurants`, if `restaurants` exists (`renderRestaurantsSimple` will not have that key).
- - `extra`: An object containing any extra data that should be rendered into the template.
- - `address`: The address for food to be delivered to. SHould be an instance of [`ordrinAPI.address`](https://github.com/ordrin/api-node#data-structures) or equivalent.
- - `menuUri`: The base url for menu requests. Mustard assumes that requests to `menuUri/rid` will get responses with restaurant menus.
- - `dateTime`: The date and time of when the food should be delivered. Should be `"ASAP"` or a string of the form `MM-dd+HH:mm`.
- - `renderList`: a boolean that determines whether Mustard or Deliverator will render the restaurant list. Deliverator will render it if `renderList` is truthy.
+ - `params.template`: The name of a template to render into. This template should render the key `head` into the `<head>` tag and the key `restaurants` into a tag with the id `ordrinRestaurants`, if `restaurants` exists (`renderRestaurantsSimple` will not have that key).
+ - `params.extra`: An object containing any extra data that should be rendered into the template.
+ - `params.address`: The address for food to be delivered to. SHould be an instance of [`ordrinAPI.address`](https://github.com/ordrin/api-node#data-structures) or equivalent.
+ - `params.menuUri`: The base url for menu requests. Mustard assumes that requests to `menuUri/rid` will get responses with restaurant menus.
+ - `params.deliveryTime`: The date and time of when the food should be delivered. Should be `"ASAP"` or a string of the form `MM-dd+HH:mm`.
+ - `params.renderList`: a boolean that determines whether Mustard or Deliverator will render the restaurant list. Deliverator will render it if `renderList` is truthy. `renderRestaurants` ONLY.
+ - `params.filterRestaurants`: a function that takes as input an array of restaurants and returns another array of restaurants, which should be displayed (as opposed to the original one). `renderRestaurants` ONLY.
+ - `callback`: a function that is called once the restaurant rendering is done. Has 2 arguments: `(err, res)`. If call succeeded, `null` is returned. If there was an error, it is returned via the `err` argument. `renderRestaurants` ONLY.
 
 ##### Menu Pages
 
 ```js
-renderSimple(res, rid, template, extra, address, dateTime)
-render(res, rid, template, extra, renderMenu, address, dateTime)
+renderSimple(res, params, callback )
+render(res, params )
 ```
 
 The first renders the page to pass as little data as possible into the response, so the client will have to request the restaurant data list and render the HTML.
@@ -185,12 +227,14 @@ The second renders the page with the data and possibly the rendered HTML, so the
 
 **Arguments:**
  - `res`: The response variable that would be passed to an express middleware.
- - `rid`: The restaurant ID
- - `template`: The name of a template to render into. This template should render the key `head` into the `<head>` tag and the key `menu` into a tag with the id `ordrinMenu`, if `menu` exists (`renderSimple` will not have that key).
- - `extra`: An object containing any extra data that should be rendered into the template.
- - `address`: The address for food to be delivered to. SHould be an instance of [`ordrinAPI.address`](https://github.com/ordrin/api-node#data-structures) or equivalent.
- - `dateTime`: The date and time of when the food should be delivered. Should be `"ASAP"` or a string of the form `MM-dd+HH:mm`.
- - `renderMneu`: a boolean that determines whether Mustard or Deliverator will render the menu. Deliverator will render it if `renderMenu` is truthy.
+ - `params.rid`: The restaurant ID
+ - `params.template`: The name of a template to render into. This template should render the key `head` into the `<head>` tag and the key `menu` into a tag with the id `ordrinMenu`, if `menu` exists (`renderSimple` will not have that key).
+ - `params.extra`: An object containing any extra data that should be rendered into the template.
+ - `params.address`: The address for food to be delivered to. SHould be an instance of [`ordrinAPI.address`](https://github.com/ordrin/api-node#data-structures) or equivalent.
+ - `params.deliveryTime`: The date and time of when the food should be delivered. Should be `"ASAP"` or a string of the form `MM-dd+HH:mm`.
+ - `params.confirmUrl`: A string that contains the (relative) path to the confirm page of the app. 
+ - `params.renderMenu`: A boolean that determines whether Mustard or Deliverator will render the menu. Deliverator will render it if `renderMenu` is truthy. `render` ONLY.
+ - `callback`: a function that is called once the restaurant rendering is done. Has 2 arguments: `(err, res)`. If call succeeded, `null` is returned. If there was an error, it is returned via the `err` argument.
 
 #### Routes
 

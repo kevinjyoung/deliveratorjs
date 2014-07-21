@@ -5,9 +5,6 @@
 <script>
   ordrin = typeof ordrin==="undefined"?{}:ordrin;
   ordrin.init = ordrin.init===undefined?{}:ordrin.init;
-  {{#rid}}
-  ordrin.init.rid = {{rid}};
-  {{/rid}}
   {{#render}}
     ordrin.init.render = true;
   {{/render}}
@@ -18,19 +15,6 @@
   {{#head_init}}
     {{name}} = {{{val}}};
   {{/head_init}}
-  {{#details}}
-    ordrin.init.details = {{{this}}};
-  {{/details}}
-  {{#data}}
-    ordrin.init.menu = {{{this}}};
-  {{/data}}
-  {{#address}}
-    ordrin.init.address = {{{this}}};
-  {{/address}}
-  {{#deliveryTime}}
-    ordrin.init.deliveryTime = {{{this}}};
-  {{/deliveryTime}}
-  ordrin.init.confirmUrl = "{{confirmUrl}}";
   ordrin.restaurantUrl = ordrin.orderUrl =  window.location.protocol + "//" + window.location.host+"{{path}}/api";
   (function(){
     var ow = document.createElement('script'); ow.type = 'text/javascript'; ow.async = true;
