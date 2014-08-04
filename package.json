@@ -1,6 +1,6 @@
 {
   "name": "deliveratorjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A mustard powered node module for easily creating pages with ordr.in menus",
   "author" : "Ordr.in <tech@ordr.in>",
   "repository" : {
