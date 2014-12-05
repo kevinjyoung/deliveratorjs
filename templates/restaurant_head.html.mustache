@@ -26,9 +26,11 @@
   {{#data}}
     ordrin.init.restaurants = {{{this}}};
   {{/data}}
-  (function(){
-    var ow = document.createElement('script'); ow.type = 'text/javascript'; ow.async = true;
-    ow.src = '{{path}}/script/mustard.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ow, s);  
-  })();
+  {{^suppressMustard}}
+    (function(){
+      var ow = document.createElement('script'); ow.type = 'text/javascript'; ow.async = true;
+      ow.src = '{{path}}/script/mustard.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ow, s);  
+    })();
+  {{/suppressMustard}}
 </script>
